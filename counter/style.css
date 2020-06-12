@@ -1,0 +1,61 @@
+html body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #577590;
+}
+
+body {
+    display: grid;
+    align-content: center;
+    grid-template-areas: ". title ." ". content .";
+    grid-template-columns: 1fr 2fr 1fr;
+    color: white;
+}
+
+.page-title {
+    margin-top: -10vh;
+    grid-area: title;
+    display: grid;
+    justify-content: center;
+}
+
+.page-title>p {
+    font-family: 'arial';
+    font-size: 4rem;
+}
+
+.container {
+    grid-area: content;
+    display: grid;
+    grid-template-areas: "a" "b";
+    background-color: #577590;
+    border: 2px solid #577590;
+    border-radius: 20px;
+    box-shadow: 0px 0px 3px black;
+    padding: 10px;
+}
+
+#number-container {
+    grid-area: a;
+    display: grid;
+    justify-items: center;
+    font-size: 4rem;
+}
+
+.controls {
+    grid-area: b;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.button {
+    border: solid 1px #F2A541;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #F2A541;
+    color: white;
+    font-size: 16px;
+}
