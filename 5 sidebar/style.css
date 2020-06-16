@@ -1,0 +1,61 @@
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #F3F7ED;
+    font-family: 'Fira Code', monospace;
+}
+
+.sidebar .max-sidebar {
+    position: absolute;
+    left: -9.5em;
+    top: 0;
+    height: 100vh;
+    width: 12em;
+    background-color: #41598B;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    color: white;
+    justify-content: right;
+    transition-duration: 0.4s;
+    z-index: 0;
+}
+
+.sidebar:hover .max-sidebar {
+    transform: translateX(9.5em);
+}
+
+.top {
+    display: grid;
+    grid-template-rows: repeat(10, minmax(0, 1fr));
+    justify-items: center;
+    align-content: center;
+}
+
+.center {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.bottom {
+    display: grid;
+    justify-content: center;
+    align-items: end;
+}
+
+.tag {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.right {
+    justify-items: right;
+}
+
+.material-icons {
+    padding-right: 0.3em;
+    padding-left: 0em;
+}
