@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock</title>
+</head>
+<style>
+  html,
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+
+    align-content: center;
+    justify-items: center;
+    background-color: #000;
+  }
+
+  .clock {
+    width: 50vh;
+    height: 50vh;
+
+    background-color: #111;
+    padding: 1vh;
+
+    border-radius: 51vh;
+
+    position: relative;
+  }
+
+  #dot {
+    margin-top: -5px;
+    margin-left: -5px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    border-radius: 5px;
+
+    background-color: #fff;
+    z-index: 4;
+  }
+
+  #hours {
+    height: 35%;
+    background-color: #fff;
+    z-index: 3;
+  }
+
+  #minutes {
+    height: 40%;
+    background-color: #aaa;
+    z-index: 2;
+  }
+
+  #seconds {
+    height: 45%;
+    background-color: #f00;
+    z-index: 1;
+  }
+
+  .hand {
+    width: 4px;
+    border-radius: 2px;
+
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+
+    transform-origin: bottom;
+
+  }
+
+  .number {
+    background-color: rgba(255,255,255,0.2);
+    height: 16px;
+    width: 16px;
+
+    border-radius: 8px;
+  }
+
+  .numberContainer {
+    padding-top: 42%;
+    margin-left: -8px;
+    
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform-origin: top center;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="clock" id="clock">
+      <div id="dot"></div>
+      <div id="hours" class="hand"></div>
+      <div id="minutes" class="hand"></div>
+      <div id="seconds" class="hand"></div>
+    </div>
+  </div>
+
+  <script>
+    for (let i = 0; i < 12; ++i) {
+      let numberContainer = document.createElement('div');
+      numberContainer.className = "numberContainer";
+      numberContainer.style.transform = `rotate(${parseInt(i/12*360)}deg)`;
+
+      let numberElement = document.createElement('div');
+      numberElement.className = "number";
+
+      numberContainer.appendChild(numberElement);
+      clock.appendChild(numberContainer);
+    }
+
+    let deltaSeconds = 0;
+    let deltaMinutes = 0;
+
+    setInterval(() => {
+      let now = new Date(Date.now());
+      let ms = now.getMilliseconds();
+      let second = now.getSeconds() + ms/1000;
+      let minute = now.getMinutes() + second / 60;
+      let hour = now.getHours() % 12 + minute / 60;
+      if (second == 0)
+        deltaSeconds += 360
+      if (minute == 0) 
+        deltaMinutes += 360
+      seconds.style.transform = `rotate(${deltaSeconds + second / 60 * 360}deg)`;
+      minutes.style.transform = `rotate(${deltaMinutes + minute / 60 * 360}deg)`;
+      hours.style.transform = `rotate(${hour / 12 * 360}deg)`;
+    }, 16)
+  </script>
+</body>
+
+</html>
