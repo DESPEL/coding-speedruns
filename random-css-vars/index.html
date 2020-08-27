@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random thing</title>
+</head>
+
+<body>
+  <style>
+    html,
+    body {
+      margin: 0px;
+      padding: 0px;
+
+      color: #ddd;
+    }
+
+    :root {
+      --circle-scale: 1;
+      --circle-color: rgba(100, 100, 100, 0.1);
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+
+      display: flex;
+      align-content: center;
+      justify-content: center;
+
+      background-color: #000;
+    }
+
+    .instructions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+    }
+
+    .circle {
+      height: 10vh;
+      width: 10vh;
+      border-radius: 5vh;
+      transform: scale(var(--circle-scale));
+
+      position: absolute;
+      top: 50%;
+      background-color: var(--circle-color);
+    }
+  </style>
+  <div class="container" id="container">
+    <div class="instructions">
+      <h3>Click and move the mouse up and down</h3>
+      <p>Right click to change color</p>
+    </div>
+    <div class="circle"></div>
+  </div>
+  <script>
+    const circleNumber = 18;
+    const root = document.documentElement;
+    let scale = 1;
+
+    for (let i = 0; i < circleNumber; ++i) {
+      const circle = createCircle();
+      container.appendChild(circle);
+    }
+
+    document.documentElement.addEventListener("mousemove", (event) => {
+      if (event.buttons == 1) {
+        const deltaY = event.movementY;
+        scale -= deltaY * 0.01;
+        root.style.setProperty('--circle-scale', `${scale}`)
+        console.log('mouse drag')
+      }
+      if (event.buttons == 2) {
+        console.log(window);
+        const colorR = parseInt(event.x / window.innerWidth * 255);
+        const colorB = parseInt(event.y / window.innerHeight * 255);
+        console.log(colorR, colorB);
+        root.style.setProperty('--circle-color',  `rgba(${colorR}, ${255 - colorR}, ${colorB}, 0.1)`);
+      }
+    });
+
+    function createCircle() {
+      const dimensions = parseInt(Math.random() * 15);
+      const positionX = 10 + parseInt(Math.random() * 80);
+      const positionY = 10 + parseInt(Math.random() * 80);
+
+      const circle = document.createElement('div');
+      circle.className = "circle";
+      circle.style.width = `${dimensions}vh`;
+      circle.style.height = `${dimensions}vh`;
+      circle.style.borderRadius = `${dimensions / 2}vh`;
+      circle.style.top = `${positionY}%`;
+      circle.style.left = `${positionX}%`;
+
+      return circle;
+    }
+  </script>
+</body>
+
+</html>
